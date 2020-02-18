@@ -58,7 +58,7 @@ namespace DirFileInfo
             DirectoryInfo di = new DirectoryInfo(path);
             string p = Path.Combine(path, subdir);
             if (Directory.Exists(p)) {
-                Directory.Delete(p,true);
+                Directory.Delete(p,true); //true -> ook subdirectories
             }
             di.CreateSubdirectory(subdir);
             FileInfo f = new FileInfo(Path.Combine(p, "testfile"));
