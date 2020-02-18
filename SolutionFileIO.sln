@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateDirectories", "Create
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateFiles", "CreateFiles\CreateFiles.csproj", "{CFE1B791-A03B-4496-843E-B8B367400FC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zip", "Zip\Zip.csproj", "{68E4820E-6E7A-47ED-8A4F-0984C90B0479}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Straatnamen", "Straatnamen\Straatnamen.csproj", "{314FE159-36BB-4B0F-93F2-9BBBB63EA3C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{CFE1B791-A03B-4496-843E-B8B367400FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFE1B791-A03B-4496-843E-B8B367400FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFE1B791-A03B-4496-843E-B8B367400FC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68E4820E-6E7A-47ED-8A4F-0984C90B0479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68E4820E-6E7A-47ED-8A4F-0984C90B0479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68E4820E-6E7A-47ED-8A4F-0984C90B0479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68E4820E-6E7A-47ED-8A4F-0984C90B0479}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314FE159-36BB-4B0F-93F2-9BBBB63EA3C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314FE159-36BB-4B0F-93F2-9BBBB63EA3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314FE159-36BB-4B0F-93F2-9BBBB63EA3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314FE159-36BB-4B0F-93F2-9BBBB63EA3C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
