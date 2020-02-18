@@ -10,6 +10,7 @@ namespace Straatnamen
     {
         private string path;
         private string extract;
+        private string resultPath;
         private Dictionary<string, Dictionary<string, List<string>>> data;
         private class ProvincieGemeente {
             public string gemeenteNaam { get; set; }
@@ -21,15 +22,17 @@ namespace Straatnamen
             }
         }
 
-        public FileProcessor(string path)
+        public FileProcessor(string path,string resultPath)
         {
             this.path = path;
+            this.resultPath = resultPath;
             data = new Dictionary<string, Dictionary<string, List<string>>>();
         }
-        public FileProcessor(string path,string extractpath)
+        public FileProcessor(string path,string extractpath, string resultPath)
         {
             this.path = path;
             this.extract = extractpath;
+            this.resultPath = resultPath;
             data = new Dictionary<string, Dictionary<string, List<string>>>();
         }
         public void unZip(string filename,string subdir)
@@ -86,8 +89,8 @@ namespace Straatnamen
                         if (ss[2] == "nl")
                             gemeenteProvincieLink[gemeenteID].gemeenteNaam = ss[3];
                     }
-                    else
-                        Console.WriteLine($"{gemeenteID},{ss[3]} not found");
+                    //else
+                    //    Console.WriteLine($"{gemeenteID},{ss[3]} not found");
                 }
             }
             //lees straatnaamid + gemeenteid
@@ -103,7 +106,7 @@ namespace Straatnamen
                     int straatnaamID = Int32.Parse(ss[0]);
                     if (!gemeenteProvincieLink.ContainsKey(gemeenteID))
                     {
-                        Console.WriteLine($"{gemeenteID},{straatnaamID} not found");
+                        //Console.WriteLine($"{gemeenteID},{straatnaamID} not found");
                     }
                     else
                     {
@@ -144,6 +147,51 @@ namespace Straatnamen
                 }
             }
             Console.WriteLine("end reading files");
+        }
+        private void schrijfGemeente(string path,List<string> straatnamen)
+        {
+            using(StreamWriter sw=new StreamWriter(path))
+            {
+                foreach(string straatnaam in straatnamen)
+                {
+                    sw.WriteLine(straatnaam);
+                }
+            }
+        }
+        public void writeResults() {
+            DirectoryInfo di = new DirectoryInfo(path);
+            di.CreateSubdirectory(resultPath);
+            
+            foreach(string provincie in data.Keys)
+            {
+                string p = Path.Combine(resultPath, provincie);
+                di.CreateSubdirectory(Path.Combine( resultPath, provincie));
+                foreach(string gemeente in data[provincie].Keys)
+                {
+                    Console.WriteLine($"writing {provincie},{gemeente}");
+                    schrijfGemeente(Path.Combine(path, resultPath, provincie,gemeente+".txt"), data[provincie][gemeente]);
+                }
+            }
+        }
+        public void clearResultsFolder()
+        {
+            clearFolder(Path.Combine(path,resultPath));
+        }
+        private void clearFolder(string path)
+        {
+            DirectoryInfo dir = new DirectoryInfo(path);
+            foreach (FileInfo fi in dir.GetFiles())
+            {
+                Console.WriteLine($"deleting {fi.FullName}");
+                fi.Delete();
+            }
+
+            foreach (DirectoryInfo di in dir.GetDirectories())
+            {
+                clearFolder(di.FullName);
+                Console.WriteLine($"deleting folder {di.FullName}");               
+            }
+            dir.Delete();
         }
     }
 }
