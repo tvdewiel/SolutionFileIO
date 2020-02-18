@@ -11,7 +11,7 @@ namespace Straatnamen
         private string path;
         private string extract;
         private string resultPath;
-        private Dictionary<string, Dictionary<string, List<string>>> data;
+        private Dictionary<string, Dictionary<string, SortedSet<string>>> data;
         private class ProvincieGemeente {
             public string gemeenteNaam { get; set; }
             public string provincieNaam { get; set; }
@@ -26,14 +26,14 @@ namespace Straatnamen
         {
             this.path = path;
             this.resultPath = resultPath;
-            data = new Dictionary<string, Dictionary<string, List<string>>>();
+            data = new Dictionary<string, Dictionary<string, SortedSet<string>>>();
         }
         public FileProcessor(string path,string extractpath, string resultPath)
         {
             this.path = path;
             this.extract = extractpath;
             this.resultPath = resultPath;
-            data = new Dictionary<string, Dictionary<string, List<string>>>();
+            data = new Dictionary<string, Dictionary<string, SortedSet<string>>>();
         }
         public void unZip(string filename,string subdir)
         {
@@ -135,12 +135,12 @@ namespace Straatnamen
                                 }
                                 else //gemeente bestaat nog niet
                                 {
-                                    data[pg.provincieNaam].Add(pg.gemeenteNaam, new List<string> { ss[1] });
+                                    data[pg.provincieNaam].Add(pg.gemeenteNaam, new SortedSet<string> { ss[1] });
                                 }
                             }
                             else //provincie bestaat nog niet
                             {
-                                data.Add(pg.provincieNaam, new Dictionary<string, List<string>> { { pg.gemeenteNaam, new List<string>() { ss[1] } } });
+                                data.Add(pg.provincieNaam, new Dictionary<string, SortedSet<string>> { { pg.gemeenteNaam, new SortedSet<string>() { ss[1] } } });
                             }
                         }
                     }
@@ -148,7 +148,7 @@ namespace Straatnamen
             }
             Console.WriteLine("end reading files");
         }
-        private void schrijfGemeente(string path,List<string> straatnamen)
+        private void schrijfGemeente(string path,SortedSet<string> straatnamen)
         {
             using(StreamWriter sw=new StreamWriter(path))
             {
