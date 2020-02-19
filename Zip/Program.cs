@@ -14,7 +14,7 @@ namespace Zip
             foreach (var file in files)
             {
                 // Add the entry for each file
-                zip.CreateEntryFromFile(file, Path.GetFileName(file), CompressionLevel.Optimal);
+                zip.CreateEntryFromFile(file, file, CompressionLevel.Optimal);
             }
             // Dispose of the object when we are done
             zip.Dispose();

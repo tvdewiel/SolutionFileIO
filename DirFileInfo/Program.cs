@@ -10,11 +10,11 @@ namespace DirFileInfo
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            string path = @"d:\.NET";
+            string path = @"c:\NET";
             Info info = new Info(path);
             info.ShowDirectoryInfo();
             info.Show10BiggestFiles();
-            info.DirCreate(@"d:\.NET\","test");
+            info.DirCreate(@"c:\NET\","test");
                        
 
         }
