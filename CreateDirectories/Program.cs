@@ -41,7 +41,7 @@ namespace CreateDirectories
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");            
-            string path = @"D:\.NET\test";
+            string path = @"c:\NET\test";
             //scenario 1
             DirectoryInfo di = new DirectoryInfo(path);
             di.Create();
